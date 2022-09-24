@@ -9,6 +9,9 @@ import Register from './pages/register';
 import ResetPassword from './pages/resetPassword';
 import LoginPage from './pages/login';
 import ProductPage from './pages/product';
+import SearchPage from './pages/search';
+import CategoryPage from './pages/category';
+import SubCategoryPage from './pages/subCategory';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
           <Route path="/password/reset" element={<ResetPassword />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product" element={<ProductPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/category" element={<CategoryPage />} />
+          <Route path="/sub-category" element={<SubCategoryPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

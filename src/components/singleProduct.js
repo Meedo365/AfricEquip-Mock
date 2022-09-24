@@ -40,7 +40,7 @@ function ProductComponent() {
                         </Breadcrumb.Item>
 
                         <Breadcrumb.Item >
-                            <Link to="/">nigeria</Link>
+                            <Link to="/search">nigeria</Link>
                         </Breadcrumb.Item>
 
                         <Breadcrumb.Item >

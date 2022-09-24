@@ -36,6 +36,11 @@ body {
   color: #707981;
 }
 
+#navbarScrollingDropdown {
+  width: fit-content;
+  padding: 3px;
+}
+
 #create-listing {
   background-color: #fee631;
   outline: none;
@@ -290,10 +295,17 @@ body {
   width: 35px;
   height: 5px;
   display: block;
+  transform: translateX(50px, 0px);
+  transition: all ease-in-out 0.2s;
+  visibility: visible;
 }
 
 #save-list p {
-  display: none;
+  /* display: none; */
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+  /* transform: translateX(-100px, 0px); */
 }
 
 #view-more-btn {
@@ -463,6 +475,7 @@ footer span {
 
 #checkbox1 {
   margin-right: 6px;
+  /* z-index: ; */
 }
 
 #checkboxLabel {
@@ -847,8 +860,6 @@ button.control-arrow .control-next {
   background-color: white;
 }
 
-
-
 .car-brand-condition span {
   background-color: whitesmoke;
   padding: 10px 10px 0px 10px;
@@ -952,7 +963,160 @@ button.control-arrow .control-next {
   color: red;
 }
 
+.shopInput {
+  margin-right: 6px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.shopTopBar {
+  background-color: steelblue;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.shopInput input,
+.shopInput select {
+  width: 100%;
+  height: 50px;
+  font-size: larger;
+  outline: none;
+  border: none;
+}
+
+.shopTopBar button {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  color: white;
+  background-color: transparent;
+  width: 150%;
+  margin: 5px;
+  font-size: larger;
+}
+
+.selectOption {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+/* .selectOption:active {
+  background-color: red;
+  font-size: x-large;
+} */
+
+.categoryLink a {
+  text-decoration: none;
+  color: steelblue;
+  width: fit-content;
+  font-size: small;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.categoryLink a:hover {
+  text-decoration: none;
+  color: #ef8c17;
+}
+
+/* .sideBar h3 {
+  display: inline-block;
+  position: relative;
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 2px;
+  padding: 10px 20px;
+}
+
+.sideBar h3:before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 140px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: black;
+}
+
+.sideBar h3:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 141px;
+  bottom: -17px;
+  top: 0%;
+  width: 0;
+  height: 0;
+  border: 9px solid transparent;
+  border-bottom-color: white;
+} */
+
+.sideBar h3 {
+  text-transform: uppercase;
+  font-size: medium;
+  padding-left: 10%;
+}
+
+.sideBar span {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+}
+
+.sideBar a {
+  text-transform: capitalize;
+  font-size: medium;
+  color: #4e575d;
+  width: fit-content;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.sideBar a:hover {
+  color: grey;
+  font-weight: 600;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.sideBar p {
+  color: steelblue;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: small;
+}
+
+.sideBar p:hover {
+  color: #ef8c17;
+}
+
+.sideBar label {
+  font-size: 14px;
+  margin-left: 10px;
+  font-weight: 450;
+}
+
+.sideBar input {
+  outline: none;
+}
+
 @media(max-width:425px) {
+  #hamburger {
+    background-color: #f8f9fa;
+    height: max-content;
+    width: max-content;
+    z-index: 1;
+    position: absolute;
+    padding: 10px;
+  }
+
   .search-mobile {
     display: flex;
     flex-direction: column;
@@ -1013,4 +1177,53 @@ button.control-arrow .control-next {
     margin-left: -40px;
   }
 
+  .shopTopBar {
+    gap: 6px;
+  }
+
+  .shopTopBar button {
+    width: 100%;
+  }
+
+  .categoryLink {
+    font-size: small;
+    text-align: center;
+  }
+
+  .sideBar,
+  .categoryLink a {
+    display: none;
+  }
+
+  .listing-card section h3 {
+    font-size: medium;
+  }
+
+}
+
+@media(max-width:768px) {
+  .banner section input {
+    width: 15rem;
+  }
+
+  .banner section button {
+    width: 7.5rem;
+  }
+
+  #hamburger {
+    background-color: #f8f9fa;
+    height: max-content;
+    width: max-content;
+    z-index: 1;
+    position: absolute;
+    padding: 10px;
+  }
+
+  .shopTopBar {
+    gap: 6px;
+  }
+
+  .shopTopBar button {
+    width: 100%;
+  }
 }

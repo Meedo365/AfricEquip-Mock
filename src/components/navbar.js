@@ -27,7 +27,7 @@ function NavBar() {
     };
 
     return <>
-        <Navbar expand="lg" id="nav">
+        <Navbar collapseOnSelect expand="lg" id="nav">
             <Container className="cen">
                 <Navbar.Brand >
                     <Link to="/">
@@ -39,7 +39,8 @@ function NavBar() {
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
                         className="justify-content-end flex-grow-1 pe-3"
-                        style={{ maxHeight: '100px' }}
+                        id="hamburger"
+                        style={{}}
                         navbarScroll
                     >
                         <Nav.Link onClick={handleShow}>
