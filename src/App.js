@@ -24,7 +24,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/category" element={<CategoryPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/sub-category" element={<SubCategoryPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

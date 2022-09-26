@@ -8,12 +8,40 @@ import Card from 'react-bootstrap/Card';
 import ProductListing from "../components/productListing";
 import Footer from "../components/footer";
 import GoToTop from "../components/goToTop";
+import { useContext } from "react";
+import { Store } from "../context/store";
+import { Link } from "react-router-dom";
 
 function Home() {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
+    let [post8, setPost8] = store.limitedPost;
+    let [category, setCategory] = store.productCategory;
+
 
     useEffect(() => {
-
+        loadCategory();
+        load8Products();
     }, []);
+
+
+    let loadCategory = () => {
+        let url = mainUrl + '/category';
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setCategory(res)
+            });
+    };
+
+    let load8Products = () => {
+        let url = mainUrl + '/product-8';
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setPost8(res)
+            })
+    }
 
 
     return <>
@@ -74,54 +102,18 @@ function Home() {
                     </div>
 
                     <Row className="gx-0">
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card" >
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
-
-                        <Col lg="2" md="4">
-                            <div className="browse-card">
-                                <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
-                                <p style={{ paddingTop: '10px' }}>automobiles equipment</p>
-                            </div>
-                        </Col>
+                        {category.map((e, i) => {
+                            return (
+                                <Col lg="2" md="4" key={i}>
+                                    <Link id="category-link" to={"/category/" + e._id}>
+                                        <div className="browse-card">
+                                            <Icon id="browse-car" icon="bi:car-front-fill" width="50" height="50" />
+                                            <p style={{ paddingTop: '10px' }}>{e.title}</p>
+                                        </div>
+                                    </Link>
+                                </Col>
+                            )
+                        })}
                     </Row>
                 </div>
             </div>
@@ -133,13 +125,70 @@ function Home() {
                     <p>
                         Latest <b>Listings</b>
                     </p>
-                    <h6>
-                        VIEW MORE
-                        <Icon icon="clarity:menu-line" width="20" height="20" />
-                    </h6>
+
+                    <Link to="/search">
+                        <h6>
+                            VIEW MORE
+                            <Icon icon="clarity:menu-line" width="20" height="20" />
+                        </h6>
+                    </Link>
+
                 </div>
 
-                <ProductListing />
+                <Row className="g-0">
+                    {post8.map((e, i) => {
+                        let prices = "";
+                        let shownaira = 'block';
+                        let numImages = e.images.length;
+                        let hour = new Date(e.createdAt).getHours();
+                        let minute = new Date(e.createdAt).getMinutes();
+                        let day = new Date(e.createdAt).getDate();
+                        let month = new Date(e.createdAt).toLocaleDateString('en-us', { month: 'short' });
+                        let year = new Date(e.createdAt).getFullYear();        
+
+                        let date = month + ' ' + day + ', ' + year;
+                        if (e.price === "Contact Us") {
+                            prices = "Contact Us";
+                            shownaira = "none"
+                        } else {
+                            prices = e.price
+                        }
+
+                        return (
+                            <Col className="square border-bottom  border-end" lg="3" md="4" xs="6">
+                                <ProductListing
+                                    key={i}
+                                    photo={numImages}
+                                    image={e.images[0]}
+                                    imageAlt={i}
+                                    productName={e.itemName}
+                                    date={date}
+                                    hour={hour}
+                                    minute={minute}
+                                    category={e.subCategory_id.category_id.title}
+                                    subCategory={e.subCategory_id.title}
+                                    location={e.location_id.place}
+                                    price={prices}
+                                    shownaira={shownaira}
+                                    category_id={e.subCategory_id.category_id._id}
+                                />
+                            </Col>
+                        )
+                    })}
+                </Row>
+
+                <Container>
+                    <Row className="view-more-row">
+                        <Col >
+                            <Link to="/search">
+                                <span id="view-more-btn">
+                                    <Icon icon="bi:arrow-right-circle-fill" width="20" height="18" style={{ marginRight: '3px' }} />
+                                    View More
+                                </span>
+                            </Link>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         </Container>
 

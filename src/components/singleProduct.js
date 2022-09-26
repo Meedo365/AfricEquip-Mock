@@ -95,7 +95,7 @@ function ProductComponent() {
                                     {images.map((e) => {
                                         return (
                                             <div className="caro">
-                                                <img src={e} />
+                                                <img src={e} alt="" />
                                             </div>
                                         )
                                     })}
