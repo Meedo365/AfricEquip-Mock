@@ -234,7 +234,9 @@ body a:hover {
 
 .listing-card {
   padding: 20px;
-  height: 100%;
+  height: 450px;
+  border-right: 1px solid silver;
+  border-bottom: 1px solid silver;
 }
 
 .listing-card:hover {
@@ -1013,6 +1015,7 @@ button.control-arrow .control-next {
   background-color: white;
   color: black;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 /* .selectOption:active {
@@ -1211,6 +1214,10 @@ button.control-arrow .control-next {
 
   .listing-card section h3 {
     font-size: medium;
+  }
+
+  .listing-card {
+    height: 420px;
   }
 
 }

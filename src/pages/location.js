@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
 import GoToTop from "../components/goToTop";
-import CategoryComponent from "../components/categoryComponent ";
 import { Store } from "../context/store";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
@@ -11,9 +10,10 @@ import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
 import Pagination from 'react-bootstrap/Pagination';
 import SideBar from "../components/sideBar";
+import LocationComponent from "../components/locationComponent ";
 
 
-function CategoryPage() {
+function LocationPage() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
     let [post, setPost] = store.products;
@@ -21,7 +21,6 @@ function CategoryPage() {
     let [location, setLocation] = store.allLocations;
     let id = useParams();
     let [catFilter, setCatFilter] = store.filterCategory;
-    let [subCategory, setSubCategory] = store.productSubCategory;
 
     let items = [];
     let [active, setActive] = useState(3);
@@ -35,7 +34,8 @@ function CategoryPage() {
 
     useEffect(() => {
         loadProducts();
-        loadSubCategory();
+        loadCategory();
+        loadLocations();
     }, []);
 
     let loadProducts = () => {
@@ -47,18 +47,23 @@ function CategoryPage() {
             })
     };
 
-    let loadSubCategory = () => {
-        let url = mainUrl + '/sub-category';
+    let loadCategory = () => {
+        let url = mainUrl + '/category';
         fetch(url)
             .then((e) => e.json())
             .then((res) => {
-                setSubCategory(res)
+                setCategory(res)
             })
     };
 
-
-
-
+    let loadLocations = () => {
+        let url = mainUrl + '/location';
+        fetch(url)
+            .then((e) => e.json())
+            .then((res) => {
+                setLocation(res)
+            })
+    };
 
     return <>
         <NavBar />
@@ -104,28 +109,27 @@ function CategoryPage() {
                             <Link to="/search">nigeria</Link>
                         </Breadcrumb.Item>
 
-                        {category.map((e, i) => {
+                        {location.map((e, i) => {
                             if (id.id === e._id) {
                                 return (
                                     <Breadcrumb.Item active>
-                                        <p key={i} style={{ textTransform: 'capitalize' }}>{e.title}</p>
+                                        <p key={i} style={{ textTransform: 'capitalize' }}>{e.place}</p>
                                     </Breadcrumb.Item>
                                 )
                             }
                         })}
+
                     </Breadcrumb>
                 </div>
             </Row>
 
             <Row className="categoryLink mb-4">
-                {subCategory.map((e, i) => {
-                    if (id.id === e.category_id._id) {
-                        return (
-                            <Col lg='3' md='4'>
-                                <Link to={'/sub-category/' + e._id}>{e.title}</Link>
-                            </Col>
-                        )
-                    }
+                {category.map((e, i) => {
+                    return (
+                        <Col lg='3' md='4'>
+                            <Link to={'/category/' + e._id}>{e.title}</Link>
+                        </Col>
+                    )
                 })}
             </Row>
         </Container>
@@ -138,16 +142,21 @@ function CategoryPage() {
 
                 <Col md='9'>
                     <Row className="gx-0" style={{ boxShadow: '0px 10px 15px 10px whitesmoke' }}>
+
                         {post.map((e, i) => {
-                            return (
-                                <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
-                                    <CategoryComponent
-                                        key={i}
-                                        categoryProducts={e}
-                                    />
-                                </Col>
-                            )
-                        })}
+                            if (id.id === e.location_id._id) {
+                                return (
+                                    <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
+                                        <LocationComponent
+                                            key={i}
+                                            categoryProducts={e}
+                                        />
+                                    </Col>
+                                )
+                            }
+                        }
+                        )}
+
                     </Row>
 
                     {/* <div className="d-flex justify-content-center mt-4">
@@ -171,4 +180,4 @@ function CategoryPage() {
     </>
 }
 
-export default CategoryPage;
+export default LocationPage;

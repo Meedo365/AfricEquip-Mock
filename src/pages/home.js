@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import NavBar from "../components/navbar";
 import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
@@ -8,7 +8,6 @@ import Card from 'react-bootstrap/Card';
 import ProductListing from "../components/productListing";
 import Footer from "../components/footer";
 import GoToTop from "../components/goToTop";
-import { useContext } from "react";
 import { Store } from "../context/store";
 import { Link } from "react-router-dom";
 
@@ -41,7 +40,7 @@ function Home() {
             .then((res) => {
                 setPost8(res)
             })
-    }
+    };
 
 
     return <>
@@ -144,7 +143,7 @@ function Home() {
                         let minute = new Date(e.createdAt).getMinutes();
                         let day = new Date(e.createdAt).getDate();
                         let month = new Date(e.createdAt).toLocaleDateString('en-us', { month: 'short' });
-                        let year = new Date(e.createdAt).getFullYear();        
+                        let year = new Date(e.createdAt).getFullYear();
 
                         let date = month + ' ' + day + ', ' + year;
                         if (e.price === "Contact Us") {
