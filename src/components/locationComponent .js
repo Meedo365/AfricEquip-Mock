@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import ProductListing from "./productListing";
 
 function LocationComponent(props) {
     let post = [props.categoryProducts];
-    let id = useParams()
     return <>
         {post?.map((e, i) => {
             let prices = "";
@@ -24,7 +22,6 @@ function LocationComponent(props) {
             } else {
                 prices = e.price
             }
-            // if (id.id === e.location_id._id) {
             return (
                 <div className="border-square">
                     <ProductListing
@@ -50,7 +47,6 @@ function LocationComponent(props) {
                     />
                 </div>
             )
-            // }
         })}
     </>
 }

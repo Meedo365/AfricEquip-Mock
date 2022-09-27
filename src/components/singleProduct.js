@@ -11,14 +11,10 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-// import OwlCarousel from 'react-owl-carousel';
-// import 'owl.carousel/dist/assets/owl.carousel.css';
 
-function ProductComponent() {
+function ProductComponent(props) {
 
-    const [images, setImages] = useState(["https://africequip.com/storage/files/ng/74/thumb-816x460-6d811572b383934dfb933ccd6a427a91.jpeg",
-        "https://africequip.com/storage/files/ng/74/thumb-816x460-f5f2df1e88d22b108893eb659bb8a714.jpeg",
-        "https://africequip.com/storage/files/ng/74/thumb-816x460-15dbe1b798e03f0955b080f51cebbb66.jpeg"]);
+    const [images, setImages] = useState(props.images);
 
     return <>
         <Container>
@@ -44,14 +40,14 @@ function ProductComponent() {
                         </Breadcrumb.Item>
 
                         <Breadcrumb.Item >
-                            <Link to="/category">automobiles equipment</Link>
+                            <Link to={"/category/" + props.catId}>{props.category}</Link>
                         </Breadcrumb.Item>
 
                         <Breadcrumb.Item >
-                            <Link to="/sub-category">trucks & trailers</Link>
+                            <Link to={"/sub-category/" + props.subId}>{props.subCategory}</Link>
                         </Breadcrumb.Item>
 
-                        <Breadcrumb.Item active style={{ width: 'fit-content' }}> <p>hydrospade trailer mount hydrovac</p></Breadcrumb.Item>
+                        <Breadcrumb.Item active style={{ width: 'fit-content' }}> <p>{props.product}</p></Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
 
@@ -66,36 +62,36 @@ function ProductComponent() {
             <Container>
                 <Row className="mb-4 g-5">
                     <Col className="product-details p-3" lg="9" >
-                        <h2>HYDROSPADE TRAILER MOUNT HYDROVAC</h2>
+                        <h2>{props.product}</h2>
 
                         <hr />
 
                         <p className="d-flex justify-content-left align-items-center" style={{ flexWrap: 'wrap' }}>
                             <span style={{ marginRight: '5px', color: "#959595" }}>
                                 < Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
-                                Feb 17th, 2022 at 16.02
+                                {props.date} at {props.hour}:{props.minute}
                             </span>
                             <span style={{ marginRight: '5px', color: "#959595", textTransform: 'uppercase' }}>
                                 <Icon icon="bi:folder" color="#959595" width="15" height="15" style={{ marginLeft: '5px', marginRight: '5px' }} />
-                                automobiles equipment
+                                {props.category}
                             </span>
                             <span style={{ marginRight: '5px', color: "#959595", textTransform: 'uppercase' }} >
                                 <Icon icon="carbon:location-filled" color="#959595" width="20" height="15" />
-                                abuja
+                                {props.location}
                             </span>
                             <span style={{ marginRight: '5px', color: "#959595", textTransform: 'uppercase' }} >
                                 <Icon icon="ant-design:eye-outlined" color="#959595" width="16" height="16" style={{ marginLeft: '5px', marginRight: '5px' }} />
-                                100 views
+                                {props.views} views
                             </span>
                         </p>
 
                         <span className="">
                             <div className="carousell" style={{ textAlign: 'center' }}>
                                 <Carousel showIndicators={false} infiniteLoop showStatus={false} thumbWidth>
-                                    {images.map((e) => {
+                                    {images.map((e, i) => {
                                         return (
                                             <div className="caro">
-                                                <img src={e} alt="" />
+                                                <img style={{ maxHeight: '650px' }} key={i} src={e} alt={i} />
                                             </div>
                                         )
                                     })}
@@ -108,20 +104,18 @@ function ProductComponent() {
                                 id="uncontrolled-tab-example"
                             >
                                 <Tab className="border-start border-bottom border-end p-3" eventKey="listing-details" title="Listing Details">
-                                    <section className="flex location-price" style={{ justifyContent: 'space-between' }}>
+                                    <section className="flex location-price" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                                         <span>
-                                            <strong>Location: </strong><Link to="/location">Abuja</Link>
+                                            <strong>Location: </strong><Link style={{ textTransform: "capitalize" }} to={"/location/" + props.locationId}>{props.location}</Link>
                                         </span>
-                                        <span>
-                                            <strong>Price: </strong>#64,125,000
+                                        <span className="flex" style={{ alignItems: 'center' }}>
+                                            <strong style={{ display: props.shownaira, paddingRight: '5px' }}>Price: &#8358;</strong> {props.price}
                                         </span>
                                     </section>
                                     <hr />
 
                                     <div className="mb-4">
-                                        <p>600 Tandem trailer mount</p>
-                                        <p>600 Gallon debris</p>
-                                        <p>225 CND gallon water</p>
+                                        <p>{props.model}</p>
                                     </div>
 
                                     <section>
@@ -135,12 +129,12 @@ function ProductComponent() {
                                         <div className="flex car-brand-condition mt-4" style={{ justifyContent: 'space-evenly' }}>
                                             <span className="flex" style={{ justifyContent: 'space-between' }}>
                                                 <h6>Car Brand</h6>
-                                                <p>Other</p>
+                                                <p>{props.brand}</p>
                                             </span>
 
                                             <span className="flex" style={{ justifyContent: 'space-between' }}>
                                                 <h6>Condition</h6>
-                                                <p>New</p>
+                                                <p>{props.condition}</p>
                                             </span>
                                         </div>
 
@@ -186,23 +180,23 @@ function ProductComponent() {
                     <Col className="product-owner" lg="3">
                         <div className="border" style={{ borderRadius: "10px" }}>
                             <div className="p-2 flex align-items-center">
-                                <img src="https://africequip.com/images/user.jpg" alt="user" />
+                                <img src={props.userImg} alt={props.username[0]} />
                                 <span className="ms-3">
                                     <p>Posted By</p>
-                                    <Link to='/sub-category'>
-                                        <h3>Heavy Equipment</h3>
-                                    </Link>
+                                    {/* <Link to={'/category/' + props.catId}> */}
+                                    <h3 style={{ textTransform: "capitalize" }}>{props.username}</h3>
+                                    {/* </Link> */}
                                 </span>
                             </div>
                             <hr />
                             <div className="px-4">
                                 <span className="d-flex justify-content-between">
                                     <p style={{ fontSize: '13px' }}>Location</p>
-                                    <Link style={{ fontSize: '13px' }} to='/location' id="posted-location">Abuja</Link>
+                                    <Link style={{ fontSize: '13px', textTransform: 'capitalize' }} to={'/location/' + props.locationId} id="posted-location">{props.location}</Link>
                                 </span>
                                 <span className="d-flex justify-content-between">
                                     <p style={{ fontSize: '13px', width: '50%' }}>Joined</p>
-                                    <p style={{ fontSize: '13px', width: '50%', textAlign: 'right' }}>Feb 3rd, 2022 at 14.35</p>
+                                    <p style={{ fontSize: '13px', width: '50%', textAlign: 'right' }}>{props.dateUser} at {props.hourUser}:{props.minuteUser}</p>
                                 </span>
                             </div>
                             <hr />
@@ -241,18 +235,9 @@ function ProductComponent() {
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col>
-                        {/* <OwlCarousel margin={10} responsiveClass={true}>
-                            <div class="item"><h4>1</h4></div>
-                            <div class="item"><h4>2</h4></div>
-                            <div class="item"><h4>3</h4></div>
-                            <div class="item"><h4>4</h4></div>
-                            <div class="item"><h4>5</h4></div>
-                            <div class="item"><h4>6</h4></div>
-                        </OwlCarousel> */}
-
-                        <div className="category">
+                {/* <Row> */}
+                {/* <Col> */}
+                {/* <div className="category">
                             <div className="browse flex">
                                 <p>
                                     Similar <b>Listings</b>
@@ -268,9 +253,9 @@ function ProductComponent() {
                                 <h2>23</h2>
                                 <h2>23</h2>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
+                        </div> */}
+                {/* </Col> */}
+                {/* </Row> */}
             </Container>
         </Container>
     </>

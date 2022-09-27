@@ -44,6 +44,7 @@ function Home() {
 
 
     return <>
+        <GoToTop />
         <NavBar />
 
         <div className="banner">
@@ -170,6 +171,9 @@ function Home() {
                                     price={prices}
                                     shownaira={shownaira}
                                     category_id={e.subCategory_id.category_id._id}
+                                    location_id={e.location_id._id}
+                                    subCategory_id={e.subCategory_id._id}
+                                    product_id={e._id}
                                 />
                             </Col>
                         )
@@ -194,7 +198,6 @@ function Home() {
         <div style={{ background: 'whitesmoke' }}>
             <Footer />
         </div>
-        <GoToTop />
     </>
 }
 

@@ -739,7 +739,7 @@ input[type=number] {
 }
 
 .category-path p {
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #6c757d;
   font-size: 16px;
   width: 200%;
@@ -927,6 +927,7 @@ button.control-arrow .control-next {
 
 .carousel .thumbs .thumb {
   width: 100px;
+  height: 80px;
   opacity: 0.5;
   border-bottom: 4px solid grey;
 }
@@ -1184,7 +1185,7 @@ button.control-arrow .control-next {
     padding: 0px 0px 0px 0px;
     width: 20rem;
   }
-
+  
   .carousel .thumbs .thumb {
     width: 72px;
   }
