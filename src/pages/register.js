@@ -103,7 +103,6 @@ function Register() {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result)
                 setSuccess(result.msg)
             })
     };

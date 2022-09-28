@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 function Home() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
+    let [user, setUser] = store.userinfo;
     let [post8, setPost8] = store.limitedPost;
     let [category, setCategory] = store.productCategory;
 
@@ -22,7 +23,6 @@ function Home() {
         loadCategory();
         load8Products();
     }, []);
-
 
     let loadCategory = () => {
         let url = mainUrl + '/category';
@@ -41,6 +41,8 @@ function Home() {
                 setPost8(res)
             })
     };
+
+
 
 
     return <>

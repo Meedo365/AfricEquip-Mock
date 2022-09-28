@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "../assets/logo.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -11,15 +11,72 @@ import { Icon } from '@iconify/react';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Store } from "../context/store";
 
 function NavBar() {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
+    let [user, setUser] = store.userinfo;
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+    let history = useNavigate();
     const [show, setShow] = useState(false);
+    let [none, setNone] = useState("none");
+    let [block, setBlock] = useState("block");
     const [showPassword, setShowPassword] = useState('password');
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const loginStatus = () => setBlock('none');
+    const logoutStatus = () => setNone('block');
 
-    let handleLogin = () => {
-        alert('here')
+    useEffect(() => {
+        userCheck();
+    }, []);
+
+    let userCheck = () => {
+        if (localStorage.getItem("afriqId") === null) {
+            setNone('none');
+            setBlock('block');
+        } else {
+            setNone('block');
+            setBlock('none');
+        }
+    };
+
+    let loginUser = () => {
+        let data = { email, password }
+        let url = mainUrl + "/login";
+        fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                setUser(result)
+                localStorage.setItem("afriqId", result.user._id)
+            })
+            .then(history('/'))
+        setEmail("")
+        setPassword("")
+        loginStatus();
+        logoutStatus();
+        handleClose();
+    };
+
+    let handleLogout = () => {
+        let url = mainUrl + "/logout";
+        fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "POST"
+        })
+            .then(localStorage.removeItem("afriqId"))
+            .then(history('/'))
+        userCheck();
     };
 
     let handleShowPassword = () => {
@@ -43,16 +100,22 @@ function NavBar() {
                         style={{}}
                         navbarScroll
                     >
-                        <Nav.Link onClick={handleShow}>
+                        <Nav.Link onClick={handleShow} style={{ display: block }}>
                             <Icon icon="bxs:user" width="16" height="16" />
                             Login
                         </Nav.Link>
 
 
-                        <Nav.Link>
+                        <Nav.Link style={{ display: block }}>
                             <Link to='/register'>
                                 <Icon icon="bxs:user-plus" width="22" height="22" />
                                 Register
+                            </Link>
+                        </Nav.Link>
+
+                        <Nav.Link>
+                            <Link to='/' onClick={() => handleLogout()} style={{ display: none }}>
+                                Logout
                             </Link>
                         </Nav.Link>
 
@@ -91,6 +154,10 @@ function NavBar() {
                             <Form.Control
                                 type="email"
                                 placeholder="Email or Phone"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                                 autoFocus
                             />
                         </span>
@@ -103,6 +170,10 @@ function NavBar() {
                             <Form.Control
                                 type={showPassword}
                                 placeholder="Password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                             <Icon onClick={handleShowPassword} id="show-password" icon="quill:eye-closed" width="30" height="30" hFlip={true} />
                         </span>
@@ -125,7 +196,7 @@ function NavBar() {
                     </Col>
                 </Row>
 
-                <Row>
+                {/* <Row>
                     <div className="captcha">
                         <p>We don't like robots :(</p>
                         <h3>Captcha Here</h3>
@@ -135,14 +206,14 @@ function NavBar() {
                         <p>Please enter the security code shown in the image above in the field below:</p>
                         <input type='text' />
                     </div>
-                </Row>
+                </Row> */}
 
             </Modal.Body>
             <Modal.Footer>
                 <Button id="modal-cancel" onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button id="modal-login" onClick={handleLogin} style={{ background: '' }}>
+                <Button id="modal-login" onClick={() => loginUser()} style={{ background: '' }}>
                     Login
                 </Button>
             </Modal.Footer>

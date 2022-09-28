@@ -11,9 +11,10 @@ import { Store } from "../context/store";
 function LoginPage() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
+    let [user, setUser] = store.userinfo;
     let history = useNavigate();
-    let [email, setEmail] = useState("")
-    let [password, setPassword] = useState("")
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState('password');
     let handleShowPassword = () => {
         showPassword === 'password' ? setShowPassword('text') : setShowPassword('password')
@@ -21,7 +22,7 @@ function LoginPage() {
 
     let loginUser = () => {
         let data = { email, password }
-        let url = mainUrl + "/activate";
+        let url = mainUrl + "/login";
         fetch(url, {
             headers: {
                 "content-type": "application/json"
@@ -29,8 +30,14 @@ function LoginPage() {
             method: "POST",
             body: JSON.stringify(data)
         })
-            .then(history("/"))
-    }
+            .then(res => res.json())
+            .then(result => {
+                setUser(result)
+                localStorage.setItem("afriqId", result.user._id)
+            })
+            .then(history('/'))
+    };
+
     return <>
         <NavBar />
 
