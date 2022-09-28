@@ -13,6 +13,7 @@ import SearchPage from './pages/search';
 import CategoryPage from './pages/category';
 import SubCategoryPage from './pages/subCategory';
 import LocationPage from './pages/location';
+import Activate from './pages/activate';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/sub-category/:id" element={<SubCategoryPage />} />
           <Route path="/location/:id" element={<LocationPage />} />
+          <Route path="/user/activate/:id" element={<Activate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

@@ -1,20 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 import { Icon } from '@iconify/react';
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoToTop from "../components/goToTop";
+import { Store } from "../context/store";
 
 function LoginPage() {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
+    let history = useNavigate();
+    let [email, setEmail] = useState("")
+    let [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState('password');
     let handleShowPassword = () => {
         showPassword === 'password' ? setShowPassword('text') : setShowPassword('password')
     };
-    let register = () => {
-        alert('aaaa')
-    };
+
+    let loginUser = () => {
+        let data = { email, password }
+        let url = mainUrl + "/activate";
+        fetch(url, {
+            headers: {
+                "content-type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+            .then(history("/"))
+    }
     return <>
         <NavBar />
 
@@ -32,6 +48,10 @@ function LoginPage() {
                                 <Form.Control
                                     type="email"
                                     placeholder="Email or Phone"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
                                 />
                             </span>
                         </Form.Group>
@@ -43,12 +63,16 @@ function LoginPage() {
                                 <Form.Control
                                     type={showPassword}
                                     placeholder="Password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
                                 />
                                 <Icon onClick={handleShowPassword} id="show-password" icon="quill:eye-closed" width="30" height="30" hFlip={true} />
                             </span>
                         </Form.Group>
 
-                        <Row>
+                        {/* <Row>
                             <div className="captcha">
                                 <h4>Captcha Here</h4>
                             </div>
@@ -59,9 +83,9 @@ function LoginPage() {
                                     type="text"
                                 />
                             </div>
-                        </Row>
+                        </Row> */}
 
-                        <Button className="align-self-center" id='reset-btn'>
+                        <Button className="align-self-center" id='reset-btn' onClick={() => loginUser()}>
                             Log In
                         </Button>
                     </Form>
