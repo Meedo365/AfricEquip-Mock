@@ -11,17 +11,28 @@ import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
 import Pagination from 'react-bootstrap/Pagination';
 import SideBar from "../components/sideBar";
+import NoProduct from "../components/noProduct";
+import { useLocation } from "react-router-dom";
 
 
 function CategoryPage() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
-    let [post, setPost] = store.products;
+    let [post, setPost] = useState([]);
+    let [grid, setGrid] = store.gridSort;
+    let [list, setList] = store.listSort;
+    let [compact, setCompact] = store.compactSort;
     let [category, setCategory] = store.productCategory;
     let [location, setLocation] = store.allLocations;
     let id = useParams();
     let [catFilter, setCatFilter] = store.filterCategory;
     let [subCategory, setSubCategory] = store.productSubCategory;
+    let [compactSearch, setCompactSearch] = useState("block");
+    let [gridSearch, setGridSearch] = useState("block");
+    let [listSearch, setListSearch] = useState("block");
+
+    const routePath = useLocation();
+    let search = routePath.search;
 
     let items = [];
     let [active, setActive] = useState(3);
@@ -36,12 +47,24 @@ function CategoryPage() {
     useEffect(() => {
         loadProducts();
         loadSubCategory();
-    }, []);
+        display();
+    }, [routePath]);
 
     let loadProducts = () => {
+        // let url = mainUrl + '/product-sort-by-category/' + id.id;
         let url = mainUrl + '/products';
         fetch(url)
             .then((e) => e.json())
+            .then((res) => {
+                let result = [];
+                res.map(e => {
+                    if (e.subCategory_id.category_id._id === id.id) {
+                        result.push(e)
+                    }
+                })
+                console.log(result)
+                return result
+            })
             .then((res) => {
                 setPost(res)
             })
@@ -56,9 +79,30 @@ function CategoryPage() {
             })
     };
 
-
-
-
+    let display = () => {
+        if (search === "?display=compact") {
+            setCompact("black")
+            setGrid("steelblue")
+            setList("steelblue")
+            setGridSearch('none')
+            setListSearch('none')
+            setCompactSearch('block')
+        } else if (search === "?display=list") {
+            setList("black")
+            setGrid("steelblue")
+            setCompact("steelblue")
+            setCompactSearch("none")
+            setGridSearch("none")
+            setListSearch("block")
+        } else {
+            setGrid("black")
+            setList("steelblue")
+            setCompact("steelblue")
+            setCompactSearch("none")
+            setListSearch("none")
+            setGridSearch("block")
+        }
+    };
 
     return <>
         <NavBar />
@@ -131,23 +175,57 @@ function CategoryPage() {
         </Container>
 
         <Container>
+
             <Row className="mb-5 gy-3" >
+
                 <Col md="3">
                     <SideBar />
                 </Col>
 
                 <Col md='9'>
+                    <div className="post-count-container">
+                        <span className="flex post-count">
+                            <p>All Listings</p>
+                            <p id="post-length">{post.length}</p>
+                        </span>
+                    </div>
+                    <div className="flex grid-compact">
+                        <h6>All listings</h6>
+                        <section>
+                            <p>
+                                <Link to={"/category/" + id.id + "?display=grid"}>
+                                    <Icon icon="clarity:grid-chart-solid" width="20" height="20" color={grid} />
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to={"/category/" + id.id + "?display=list"}>
+                                    <Icon icon="ci:list-checklist" width="20" height="20" color={list} />
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to={"/category/" + id.id + "?display=compact"}>
+                                    <Icon icon="bi:list" width="20" height="20" color={compact} />
+                                </Link>
+                            </p>
+                        </section>
+                    </div>
                     <Row className="gx-0" style={{ boxShadow: '0px 10px 15px 10px whitesmoke' }}>
-                        {post.map((e, i) => {
-                            return (
-                                <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
-                                    <CategoryComponent
-                                        key={i}
-                                        categoryProducts={e}
-                                    />
-                                </Col>
-                            )
-                        })}
+                        {post.length == 0 ?
+                            <NoProduct /> :
+                            post.map((e, i) => {
+                                return (
+                                    <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
+                                        <CategoryComponent
+                                            key={i}
+                                            categoryProducts={e}
+                                            noneGridd={gridSearch}
+                                            noneListt={listSearch}
+                                            noneCompactt={compactSearch}
+                                        />
+                                    </Col>
+                                )
+                            })
+                        }
                     </Row>
 
                     {/* <div className="d-flex justify-content-center mt-4">
@@ -160,7 +238,9 @@ function CategoryPage() {
                         </Pagination>
                     </div> */}
                 </Col>
+
             </Row>
+
         </Container>
 
 

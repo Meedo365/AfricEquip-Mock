@@ -7,13 +7,12 @@ import { Container } from "react-bootstrap";
 
 function ProductListing(props) {
     let categoryRoute = '/category/' + props.category_id;
-    // let subCategoryRoute = '/' + props.category_name.replace(/ /g, '-') + '/' + props.subCategory_id;
     let subCategoryRoute = '/sub-category/' + props.subCategory_id;
     let productRoute = '/product/' + props.product_id;
     let locationRoute = '/location/' + props.location_id
 
     return <>
-        <div className="listing-card" style={{ display: props.none }}>
+        <div className="listing-card" style={{ display: props.noneGrid }}>
             <div style={{ background: 'white' }}>
                 <span className="flex">
                     <Icon icon="ant-design:camera-filled" color="#959595" width="20" height="20" />
@@ -31,7 +30,8 @@ function ProductListing(props) {
                     </h4>
                 </Link>
                 {/* <section> */}
-                <p> <Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
+                <p className="listing-p">
+                    <Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
                     {props.date} at {props.hour}:{props.minute}
                     <Icon icon="bi:folder" color="#959595" width="15" height="15" style={{ marginLeft: '5px' }} />
                     <Link className="ae" to={categoryRoute}>{props.category}</Link>
@@ -47,7 +47,7 @@ function ProductListing(props) {
 
             <section>
                 <div style={{ float: 'right' }}>
-                    <h3 className="flex">
+                    <h3 className="flex" id="priceProductListing">
                         <p style={{ display: props.shownaira }}>&#8358;</p>{props.price}
                     </h3>
                 </div><br /><br />
@@ -59,6 +59,8 @@ function ProductListing(props) {
                 </div>
             </section>
         </div>
+        <div style={{ display: props.noneList }}><h1>List</h1></div>
+        <div style={{ display: props.noneCompact }}><h1>Compact</h1></div>
     </>
 }
 

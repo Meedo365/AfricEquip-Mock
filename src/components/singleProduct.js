@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
@@ -13,12 +13,27 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 function ProductComponent(props) {
-
+    let [block, setBlock] = useState("visible");
     const [images, setImages] = useState(props.images);
+    const [mt, setMT] = useState("");
+
+    useEffect(() => {
+        userCheck();
+    }, []);
+
+    let userCheck = () => {
+        if (localStorage.getItem("afriqId") === null) {
+            setBlock('visible');
+        } else {
+            setBlock('hidden');
+            setMT("-100px")
+        }
+    };
+
 
     return <>
         <Container>
-            <div className="loginBar">
+            <div className="loginBar" style={{ visibility: block }}>
                 <span>
                     <Link to="/login">Login</Link> for faster access to the best deals.
                     <Link to="/register"> Click here</Link> if you don't have an account.
@@ -26,7 +41,7 @@ function ProductComponent(props) {
                 <CloseButton aria-label="Hide" />
             </div>
 
-            <div className="category-path d-flex justify-content-between">
+            <div style={{ marginTop: mt }} className="category-path d-flex justify-content-between">
                 <div >
                     <Breadcrumb>
                         <Breadcrumb.Item>
@@ -104,7 +119,7 @@ function ProductComponent(props) {
                                 id="uncontrolled-tab-example"
                             >
                                 <Tab className="border-start border-bottom border-end p-3" eventKey="listing-details" title="Listing Details">
-                                    <section className="flex location-price" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <section className="flex location-price" style={{ justifyContent: 'space-between' }}>
                                         <span>
                                             <strong>Location: </strong><Link style={{ textTransform: "capitalize" }} to={"/location/" + props.locationId}>{props.location}</Link>
                                         </span>

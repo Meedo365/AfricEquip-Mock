@@ -29,6 +29,7 @@ function App() {
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/sub-category/:id" element={<SubCategoryPage />} />
           <Route path="/location/:id" element={<LocationPage />} />
+          {/* <Route path="/location/:id" element={<LocationPage />} /> */}
           <Route path="/user/activate/:id" element={<Activate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

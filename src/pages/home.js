@@ -176,6 +176,9 @@ function Home() {
                                     location_id={e.location_id._id}
                                     subCategory_id={e.subCategory_id._id}
                                     product_id={e._id}
+                                    noneGrid={"block"}
+                                    noneList={"none"}
+                                    noneCompact={"none"}
                                 />
                             </Col>
                         )

@@ -1,10 +1,3 @@
-// import React from "react";
-// import NavBar from "../components/navbar";
-// import { Icon } from '@iconify/react';
-// import Container from 'react-bootstrap/Container';
-// import Footer from "../components/footer";
-// import { Link } from "react-router-dom";
-// import GoToTop from "../components/goToTop";
 import React, { useEffect, useContext, useState } from "react";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
@@ -18,16 +11,24 @@ import Container from 'react-bootstrap/Container';
 import Pagination from 'react-bootstrap/Pagination';
 import SideBar from "../components/sideBar";
 import SearchComponent from "../components/searchComponent";
+import { useLocation } from "react-router-dom";
 
 function SearchPage() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
     let [post, setPost] = store.products;
+    let [grid, setGrid] = store.gridSort;
+    let [list, setList] = store.listSort;
+    let [compact, setCompact] = store.compactSort;
     let [category, setCategory] = store.productCategory;
     let [location, setLocation] = store.allLocations;
+    let [compactSearch, setCompactSearch] = useState("block");
+    let [gridSearch, setGridSearch] = useState("block");
+    let [listSearch, setListSearch] = useState("block");
     let id = useParams();
     let [catFilter, setCatFilter] = store.filterCategory;
-
+    const routePath = useLocation();
+    let search = routePath.search;
     let items = [];
     let [active, setActive] = useState(3);
     for (let number = 1; number <= 5; number++) {
@@ -42,7 +43,8 @@ function SearchPage() {
         loadProducts();
         loadCategory();
         loadLocations();
-    }, []);
+        display();
+    }, [routePath]);
 
     let loadProducts = () => {
         let url = mainUrl + '/products';
@@ -70,16 +72,31 @@ function SearchPage() {
                 setLocation(res)
             })
     };
-    // return <>
-    //     {/* <NavBar />
 
-    //     <SearchComponent />
-
-    //     <div style={{ background: 'whitesmoke' }}>
-    //         <Footer />
-    //     </div>
-    //     <GoToTop /> */}
-    // </>
+    let display = () => {
+        if (search === "?display=compact") {
+            setCompact("black")
+            setGrid("steelblue")
+            setList("steelblue")
+            setGridSearch('none')
+            setListSearch('none')
+            setCompactSearch('block')
+        } else if (search === "?display=list") {
+            setList("black")
+            setGrid("steelblue")
+            setCompact("steelblue")
+            setCompactSearch("none")
+            setGridSearch("none")
+            setListSearch("block")
+        } else {
+            setGrid("black")
+            setList("steelblue")
+            setCompact("steelblue")
+            setCompactSearch("none")
+            setListSearch("none")
+            setGridSearch("block")
+        }
+    };
 
     return <>
         <NavBar />
@@ -157,6 +174,32 @@ function SearchPage() {
                 </Col>
 
                 <Col md='9'>
+                    <div className="post-count-container">
+                        <span className="flex post-count">
+                            <p>All Listings</p>
+                            <p id="post-length">{post.length}</p>
+                        </span>
+                    </div>
+                    <div className="flex grid-compact">
+                        <h6>All listings</h6>
+                        <section>
+                            <p>
+                                <Link to={"/search?display=grid"}>
+                                    <Icon icon="clarity:grid-chart-solid" width="20" height="20" color={grid} />
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to={"/search?display=list"}>
+                                    <Icon icon="ci:list-checklist" width="20" height="20" color={list} />
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to={"/search?display=compact"}>
+                                    <Icon icon="bi:list" width="20" height="20" color={compact} />
+                                </Link>
+                            </p>
+                        </section>
+                    </div>
                     <Row className="gx-0" style={{ boxShadow: '0px 10px 15px 10px whitesmoke' }}>
 
                         {post.map((e, i) => {
@@ -166,6 +209,9 @@ function SearchPage() {
                                     <SearchComponent
                                         key={i}
                                         categoryProducts={e}
+                                        noneGridd={gridSearch}
+                                        noneListt={listSearch}
+                                        noneCompactt={compactSearch}
                                     />
                                 </Col>
                             )
@@ -185,8 +231,8 @@ function SearchPage() {
                         </Pagination>
                     </div> */}
                 </Col>
-            </Row>
-        </Container>
+            </Row >
+        </Container >
 
 
         <div style={{ background: 'whitesmoke' }}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import { Store } from "../context/store";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,7 @@ function SideBar() {
     let [mainUrl] = store.endUrl;
     let [category, setCategory] = store.productCategory;
     let [location, setLocation] = store.allLocations;
+
 
     useEffect(() => {
         loadCategory();
@@ -31,12 +32,6 @@ function SideBar() {
                 setLocation(res);
             })
     };
-
-    
-
-
-
-
 
     return <>
         <div className="sideBar border pt-3">

@@ -8,7 +8,7 @@ function LocationComponent(props) {
         {post?.map((e, i) => {
             let prices = "";
             let shownaira = 'block';
-            let numImages = e.images.length;
+            let numImages;
             let hour = new Date(e.createdAt).getHours();
             let minute = new Date(e.createdAt).getMinutes();
             let day = new Date(e.createdAt).getDate();
@@ -22,6 +22,13 @@ function LocationComponent(props) {
             } else {
                 prices = e.price
             }
+
+            if (e.images[0] === "https://africequip.com/storage/app/default/picture.jpg") {
+                numImages = 0
+            } else {
+                numImages = e.images.length
+            }
+
             return (
                 <div className="border-square">
                     <ProductListing
@@ -44,7 +51,11 @@ function LocationComponent(props) {
                         subCategory_id={e.subCategory_id._id}
                         product_id={e._id}
                         location_id={e.location_id._id}
+                        noneList={props.noneListt}
+                        noneCompact={props.noneCompactt}
+                        noneGrid={props.noneGridd}
                     />
+
                 </div>
             )
         })}
