@@ -1218,7 +1218,8 @@ button.control-arrow .control-next {
   display: flex;
   justify-content: right;
   border-top: 1px solid silver;
-  width: 102%;
+  width: 120%;
+  margin-left: 300px;
   padding-top: 10px;
   padding-right: 20px;
 }
@@ -1371,20 +1372,29 @@ button.control-arrow .control-next {
 
 }
 
-;
+@media(min-width:768px) {
 
-@media(max-width:768px) {
-  #compact-row {
+  /* #compact-row {
     height: 0px;
-  }
+  } */
 
   .grid-compact section {
-    width: 70%;
-    margin-left: 34px;
+    /* display: flex;
+    justify-content: right;
+    border-top: 1px solid silver; */
+    width: 100%;
+    margin-left: 0%;
+    /* background-color: #36648a; */
+    /* padding-top: 10px;
+    padding-right: 20px; */
   }
 
   .listing-card {
     height: 480px;
+  }
+
+  .listing-card section h3 {
+    font-size: medium;
   }
 
   #priceProductListing {
@@ -1409,17 +1419,15 @@ button.control-arrow .control-next {
     height: max-content;
     width: max-content;
     z-index: 1;
-    position: absolute;
+    /* position: absolute; */
     padding: 10px;
   }
 
-  .shopTopBar {
+  /* .shopTopBar {
     gap: 6px;
-  }
+  } */
 
-  .shopTopBar button {
+  /* .shopTopBar button {
     width: 100%;
-  }
+  } */
 }
-
-;

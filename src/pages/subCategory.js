@@ -235,15 +235,37 @@ function SubCategoryPage() {
                             post?.map((e, i) => {
                                 if (id.id === e.subCategory_id._id) {
                                     return (
-                                        <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
-                                            <SubCategoryComponent
-                                                key={i}
-                                                categoryProducts={e}
-                                                noneGridd={gridSearch}
-                                                noneListt={listSearch}
-                                                noneCompactt={compactSearch}
-                                            />
-                                        </Col>
+                                        <>
+                                            <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content', display: gridSearch }}>
+                                                <SubCategoryComponent
+                                                    key={i}
+                                                    categoryProducts={e}
+                                                    noneGridd={gridSearch}
+                                                    noneListt={listSearch}
+                                                    noneCompactt={compactSearch}
+                                                />
+                                            </Col>
+
+                                            <Col className="border-square" lg="12" style={{ width: 'fix-content', display: listSearch }}>
+                                                <SubCategoryComponent
+                                                    key={i}
+                                                    categoryProducts={e}
+                                                    noneGridd={gridSearch}
+                                                    noneListt={listSearch}
+                                                    noneCompactt={compactSearch}
+                                                />
+                                            </Col>
+
+                                            <Col className="border-square" lg="12" style={{ width: 'fix-content', display: compactSearch }}>
+                                                <SubCategoryComponent
+                                                    key={i}
+                                                    categoryProducts={e}
+                                                    noneGridd={gridSearch}
+                                                    noneListt={listSearch}
+                                                    noneCompactt={compactSearch}
+                                                />
+                                            </Col>
+                                        </>
                                     )
                                 }
                             })}

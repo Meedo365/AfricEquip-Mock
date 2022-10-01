@@ -214,15 +214,37 @@ function CategoryPage() {
                             <NoProduct /> :
                             post.map((e, i) => {
                                 return (
-                                    <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
-                                        <CategoryComponent
-                                            key={i}
-                                            categoryProducts={e}
-                                            noneGridd={gridSearch}
-                                            noneListt={listSearch}
-                                            noneCompactt={compactSearch}
-                                        />
-                                    </Col>
+                                    <>
+                                        <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content', display: gridSearch }}>
+                                            <CategoryComponent
+                                                key={i}
+                                                categoryProducts={e}
+                                                noneGridd={gridSearch}
+                                                noneListt={listSearch}
+                                                noneCompactt={compactSearch}
+                                            />
+                                        </Col>
+
+                                        <Col className="border-square" lg="12" style={{ width: 'fix-content', display: listSearch }}>
+                                            <CategoryComponent
+                                                key={i}
+                                                categoryProducts={e}
+                                                noneGridd={gridSearch}
+                                                noneListt={listSearch}
+                                                noneCompactt={compactSearch}
+                                            />
+                                        </Col>
+
+                                        <Col className="border-square" lg="12" style={{ width: 'fix-content', display: compactSearch }}>
+                                            <CategoryComponent
+                                                key={i}
+                                                categoryProducts={e}
+                                                noneGridd={gridSearch}
+                                                noneListt={listSearch}
+                                                noneCompactt={compactSearch}
+                                            />
+                                        </Col>
+                                    </>
                                 )
                             })
                         }

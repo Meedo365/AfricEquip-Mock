@@ -52,10 +52,10 @@ function ProductListingList(props) {
                     </div>
                 </Col>
 
-                <Col md="3">
-                    <section>
+                <Col>
+                    <section className="priceSectionListView">
                         <div>
-                            <h3 className="flex" style={{ fontSize: 'x-large', fontWeight: '700' }}>
+                            <h3 className="flex" >
                                 <p style={{ display: props.shownaira }}>&#8358;</p>{props.price}
                             </h3>
                         </div><br /><br />

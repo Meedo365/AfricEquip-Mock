@@ -111,8 +111,6 @@ function LocationPage() {
         }
     };
 
-    console.log(gridSearch, listSearch, compactSearch);
-
     return <>
         <NavBar />
 

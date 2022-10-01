@@ -29,7 +29,7 @@ function ProductListing(props) {
                         {props.productName}
                     </h4>
                 </Link>
-                {/* <section> */}
+             
                 <p className="listing-p">
                     <Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
                     {props.date} at {props.hour}:{props.minute}
@@ -42,7 +42,7 @@ function ProductListing(props) {
                         {props.location}
                     </Link>
                 </p>
-                {/* </section> */}
+               
             </div>
 
             <section>

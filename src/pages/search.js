@@ -205,15 +205,37 @@ function SearchPage() {
                         {post.map((e, i) => {
                             // if (id.id === e.location_id._id) {
                             return (
-                                <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
-                                    <SearchComponent
-                                        key={i}
-                                        categoryProducts={e}
-                                        noneGridd={gridSearch}
-                                        noneListt={listSearch}
-                                        noneCompactt={compactSearch}
-                                    />
-                                </Col>
+                                <>
+                                    <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content', display: gridSearch }}>
+                                        <SearchComponent
+                                            key={i}
+                                            categoryProducts={e}
+                                            noneGridd={gridSearch}
+                                            noneListt={listSearch}
+                                            noneCompactt={compactSearch}
+                                        />
+                                    </Col>
+
+                                    <Col className="border-square" lg="12" style={{ width: 'fix-content', display: listSearch }}>
+                                        <SearchComponent
+                                            key={i}
+                                            categoryProducts={e}
+                                            noneGridd={gridSearch}
+                                            noneListt={listSearch}
+                                            noneCompactt={compactSearch}
+                                        />
+                                    </Col>
+
+                                    <Col className="border-square" lg="12" style={{ width: 'fix-content', display: compactSearch }}>
+                                        <SearchComponent
+                                            key={i}
+                                            categoryProducts={e}
+                                            noneGridd={gridSearch}
+                                            noneListt={listSearch}
+                                            noneCompactt={compactSearch}
+                                        />
+                                    </Col>
+                                </>
                             )
                             // }
                         }
