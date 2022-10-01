@@ -46,7 +46,7 @@ function Home() {
 
 
     return <>
-        <GoToTop />
+
         <NavBar />
 
         <div className="banner">
@@ -203,6 +203,8 @@ function Home() {
         <div style={{ background: 'whitesmoke' }}>
             <Footer />
         </div>
+
+        <GoToTop />
     </>
 }
 

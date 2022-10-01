@@ -190,7 +190,7 @@ function SearchPage() {
                             </p>
                             <p>
                                 <Link to={"/search?display=list"}>
-                                    <Icon icon="ci:list-checklist" width="20" height="20" color={list} />
+                                    <Icon icon="el:th-list" width="20" height="15" color={list} />
                                 </Link>
                             </p>
                             <p>

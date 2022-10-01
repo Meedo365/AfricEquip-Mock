@@ -1,6 +1,8 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import ProductListing from "./productListing";
+import ProductListingCompact from "./productListingCompact";
+import ProductListingList from "./productListingList";
 
 function LocationComponent(props) {
     let post = [props.categoryProducts];
@@ -51,9 +53,52 @@ function LocationComponent(props) {
                         subCategory_id={e.subCategory_id._id}
                         product_id={e._id}
                         location_id={e.location_id._id}
-                        noneList={props.noneListt}
-                        noneCompact={props.noneCompactt}
                         noneGrid={props.noneGridd}
+                    />
+                    <ProductListingList
+                        key={i}
+                        photo={numImages}
+                        image={e.images[0]}
+                        imageAlt={i}
+                        productName={e.itemName}
+                        date={date}
+                        hour={hour}
+                        minute={minute}
+                        category={e.subCategory_id.category_id.title}
+                        subCategory={e.subCategory_id.title}
+                        location={e.location_id.place}
+                        price={prices}
+                        shownaira={shownaira}
+                        category_id={e.subCategory_id.category_id._id}
+                        category_name={e.subCategory_id.category_id.title}
+                        hide="none"
+                        subCategory_id={e.subCategory_id._id}
+                        product_id={e._id}
+                        location_id={e.location_id._id}
+                        noneList={props.noneListt}
+                    />
+
+                    <ProductListingCompact
+                        key={i}
+                        photo={numImages}
+                        image={e.images[0]}
+                        imageAlt={i}
+                        productName={e.itemName}
+                        date={date}
+                        hour={hour}
+                        minute={minute}
+                        category={e.subCategory_id.category_id.title}
+                        subCategory={e.subCategory_id.title}
+                        location={e.location_id.place}
+                        price={prices}
+                        shownaira={shownaira}
+                        category_id={e.subCategory_id.category_id._id}
+                        category_name={e.subCategory_id.category_id.title}
+                        hide="none"
+                        subCategory_id={e.subCategory_id._id}
+                        product_id={e._id}
+                        location_id={e.location_id._id}
+                        noneCompact={props.noneCompactt}
                     />
 
                 </div>

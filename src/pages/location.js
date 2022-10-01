@@ -18,9 +18,9 @@ import { useLocation } from "react-router-dom";
 function LocationPage() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
-    let [compactSearch, setCompactSearch] = useState("block");
-    let [gridSearch, setGridSearch] = useState("block");
-    let [listSearch, setListSearch] = useState("block");
+    let [compactSearch, setCompactSearch] = useState("");
+    let [gridSearch, setGridSearch] = useState("");
+    let [listSearch, setListSearch] = useState("");
     let [post, setPost] = store.products;
     let [grid, setGrid] = store.gridSort;
     let [list, setList] = store.listSort;
@@ -111,6 +111,7 @@ function LocationPage() {
         }
     };
 
+    console.log(gridSearch, listSearch, compactSearch);
 
     return <>
         <NavBar />
@@ -204,7 +205,7 @@ function LocationPage() {
                             </p>
                             <p>
                                 <Link to={"/location/" + id.id + "?display=list"}>
-                                    <Icon icon="ci:list-checklist" width="20" height="20" color={list} />
+                                    <Icon icon="el:th-list" width="20" height="15" color={list} />
                                 </Link>
                             </p>
                             <p>
@@ -223,7 +224,27 @@ function LocationPage() {
                                 if (id.id === e.location_id._id) {
                                     return (
                                         <>
-                                            <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content' }}>
+                                            <Col className="border-square" md="3" xs="6" style={{ width: 'fix-content', display: gridSearch }}>
+                                                <LocationComponent
+                                                    key={i}
+                                                    categoryProducts={e}
+                                                    noneGridd={gridSearch}
+                                                    noneListt={listSearch}
+                                                    noneCompactt={compactSearch}
+                                                />
+                                            </Col>
+
+                                            <Col className="border-square" lg="12" style={{ width: 'fix-content', display: listSearch }}>
+                                                <LocationComponent
+                                                    key={i}
+                                                    categoryProducts={e}
+                                                    noneGridd={gridSearch}
+                                                    noneListt={listSearch}
+                                                    noneCompactt={compactSearch}
+                                                />
+                                            </Col>
+
+                                            <Col className="border-square" lg="12" style={{ width: 'fix-content', display: compactSearch }}>
                                                 <LocationComponent
                                                     key={i}
                                                     categoryProducts={e}

@@ -59,8 +59,6 @@ function ProductListing(props) {
                 </div>
             </section>
         </div>
-        <div style={{ display: props.noneList }}><h1>List</h1></div>
-        <div style={{ display: props.noneCompact }}><h1>Compact</h1></div>
     </>
 }
 
