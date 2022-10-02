@@ -33,7 +33,6 @@ function CategoryPage() {
 
     const routePath = useLocation();
     let search = routePath.search;
-
     let items = [];
     let [active, setActive] = useState(3);
     for (let number = 1; number <= 5; number++) {
@@ -62,7 +61,6 @@ function CategoryPage() {
                         result.push(e)
                     }
                 })
-                console.log(result)
                 return result
             })
             .then((res) => {
@@ -193,17 +191,18 @@ function CategoryPage() {
                         <h6>All listings</h6>
                         <section>
                             <p>
-                                <Link to={"/category/" + id.id + "?display=grid"}>
+                                <Link to={"?display=grid"}>
                                     <Icon icon="clarity:grid-chart-solid" width="20" height="20" color={grid} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/category/" + id.id + "?display=list"}>
+                                <Link to={"?display=list"}>
                                     <Icon icon="el:th-list" width="20" height="15" color={list} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/category/" + id.id + "?display=compact"}>
+                                {/* <Link to={"/category/" + id.id + "?display=compact"}> */}
+                                <Link to={"?display=compact"}>
                                     <Icon icon="bi:list" width="20" height="20" color={compact} />
                                 </Link>
                             </p>

@@ -60,7 +60,6 @@ function LocationPage() {
                         result.push(e)
                     }
                 })
-                console.log(result)
                 return result
             })
             .then((res) => {
@@ -197,17 +196,17 @@ function LocationPage() {
                         <h6>All listings</h6>
                         <section>
                             <p>
-                                <Link to={"/location/" + id.id + "?display=grid"}>
+                                <Link to={"?display=grid"}>
                                     <Icon icon="clarity:grid-chart-solid" width="20" height="20" color={grid} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/location/" + id.id + "?display=list"}>
+                                <Link to={"?display=list"}>
                                     <Icon icon="el:th-list" width="20" height="15" color={list} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/location/" + id.id + "?display=compact"}>
+                                <Link to={"?display=compact"}>
                                     <Icon icon="bi:list" width="20" height="20" color={compact} />
                                 </Link>
                             </p>

@@ -184,17 +184,17 @@ function SearchPage() {
                         <h6>All listings</h6>
                         <section>
                             <p>
-                                <Link to={"/search?display=grid"}>
+                                <Link to={"?display=grid"}>
                                     <Icon icon="clarity:grid-chart-solid" width="20" height="20" color={grid} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/search?display=list"}>
+                                <Link to={"?display=list"}>
                                     <Icon icon="el:th-list" width="20" height="15" color={list} />
                                 </Link>
                             </p>
                             <p>
-                                <Link to={"/search?display=compact"}>
+                                <Link to={"?display=compact"}>
                                     <Icon icon="bi:list" width="20" height="20" color={compact} />
                                 </Link>
                             </p>

@@ -26,22 +26,24 @@ function NavBar() {
     const [showPassword, setShowPassword] = useState('password');
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const loginStatus = () => setBlock('none');
-    const logoutStatus = () => setNone('block');
-    const routePath = useLocation();
+    const loginStatus = (e) => setBlock(e);
+    const logoutStatus = (e) => setNone(e);
+    let routePath = useLocation();
 
     useEffect(() => {
         userCheck();
     }, [routePath]);
 
+
     let userCheck = () => {
         if (localStorage.getItem("afriqId") === null) {
-            setNone('none');
-            setBlock('block');
+            loginStatus("block");
+            logoutStatus("none");
         } else {
-            setNone('block');
-            setBlock('none');
+            loginStatus("none");
+            logoutStatus("block");
         }
+
     };
 
     let loginUser = () => {
@@ -59,11 +61,9 @@ function NavBar() {
                 setUser(result)
                 localStorage.setItem("afriqId", result.user._id)
             })
-            .then(history('/'))
-        setEmail("")
-        setPassword("")
-        loginStatus();
-        logoutStatus();
+        history('/register')
+        setEmail("");
+        setPassword("");
         handleClose();
     };
 
@@ -121,11 +121,13 @@ function NavBar() {
                         </Nav.Link>
 
 
-                        <Nav.Link href="#action2">
-                            <button id="create-listing">
-                                <Icon icon="bytesize:compose" width="16" height="16" style={{ marginRight: '6px' }} />
-                                Create Listing
-                            </button>
+                        <Nav.Link>
+                            <Link to="?list=1">
+                                <button id="create-listing">
+                                    <Icon icon="bytesize:compose" width="16" height="16" style={{ marginRight: '6px' }} />
+                                    Create Listing
+                                </button>
+                            </Link>
                         </Nav.Link>
                         {/* <Nav.Link href="#action2">Register</Nav.Link> */}
                         <NavDropdown title="EN" id="navbarScrollingDropdown" >

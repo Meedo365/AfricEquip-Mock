@@ -43,7 +43,6 @@ function ProductPage() {
         <NavBar />
 
         {post.map((e, i) => {
-            console.log(e)
             let prices = "";
             let shownaira = 'block';
             let numImages = e.images.length;
