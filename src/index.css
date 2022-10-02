@@ -1228,6 +1228,12 @@ button.control-arrow .control-next {
   height: 30px;
 }
 
+#flash {
+  color: steelblue;
+  font-size: medium;
+  text-align: center;
+}
+
 @media(max-width:425px) {
   #listing-img-tab {
     height: 200px;

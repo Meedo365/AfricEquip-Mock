@@ -10,7 +10,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import GoToTop from "../components/goToTop";
 import { Store } from "../context/store";
-import axios from "axios";
 
 function Register() {
     let store = useContext(Store);
@@ -92,8 +91,6 @@ function Register() {
     let register = () => {
         let url = mainUrl + "/register";
         let data = { name, phone, role, password, email };
-        console.log(url)
-        console.log(data)
         fetch(url, {
             headers: {
                 "content-type": "application/json"

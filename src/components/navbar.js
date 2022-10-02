@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import logo from "../assets/logo.png"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -28,10 +28,11 @@ function NavBar() {
     const handleShow = () => setShow(true);
     const loginStatus = () => setBlock('none');
     const logoutStatus = () => setNone('block');
+    const routePath = useLocation();
 
     useEffect(() => {
         userCheck();
-    }, []);
+    }, [routePath]);
 
     let userCheck = () => {
         if (localStorage.getItem("afriqId") === null) {
