@@ -43,51 +43,6 @@ function Register() {
         }
     };
 
-    // let register = (e) => {
-    //     // password == password2 ? setPwdError('') : setPwdError("Passwords do not match");
-    //     // password == " " || password == "" ? setPwdError('Fill Password') : setPwdError("")
-    //     // password.length < 8 ? setPwdError2('Password too short') : setPwdError2("")
-    //     // check === "" ? setTermError("You have to agree to terms & conditions") : setTermError("");
-    //     // if (pwdError !== "Passwords do not match" || "Fill Password" && pwdError2 !== "Password too short" && termError !== "You have to agree to terms & conditions") {
-    //     //     // alert('success')
-    //     //     setSuccess(1111)
-    //     // } else {
-    //     //     // alert('error')
-    //     //     setSuccess(22222)
-    //     // }
-
-    //     // e.preventDefault();
-    //     let url = mainUrl + '/register';
-    //     const formData = new FormData();
-    //     formData.append('name', name)
-    //     formData.append('email', email)
-    //     formData.append('password', password)
-    //     formData.append('phone', phone)
-    //     formData.append('role', role)
-
-    //     axios.post(url, formData)
-
-    //     // axios.post(url, formData, {
-    //     //     headers: {
-    //     //         'Content-Type': 'multipart/form-data'
-    //     //     },
-    //     // })
-    //     // .then(() => {
-    //     //     setSuccess('Check your email to activate')
-    //     //     console.log('registered')
-    //     // })
-    //     // .catch((error) => {
-    //     //     console.log(error.msg)
-    //     // })
-    //     // setName("")
-    //     // setPhone("")
-    //     // setEmail("")
-    //     // setRole("")
-    //     // setPassword("")
-    //     // history("/login")
-    // };
-
-
     let register = () => {
         let url = mainUrl + "/register";
         let data = { name, phone, role, password, email };

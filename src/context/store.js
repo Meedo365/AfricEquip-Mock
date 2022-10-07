@@ -2,8 +2,8 @@ import React, { createContext, useState } from 'react';
 export const Store = createContext();
 const StoreContext = ({ children }) => {
     let [user, setUser] = useState('');
-    // let [url, setUrl] = useState('http://localhost:5001');
-    let [url, setUrl] = useState('https://afric-equip-api.herokuapp.com');
+    let [url, setUrl] = useState('http://localhost:5001');
+    // let [url, setUrl] = useState('https://afric-equip-api.herokuapp.com');
     let [cookieAllow, setCookieAllow] = useState('block');
     let [post8, setPost8] = useState([]);
     let [post, setPost] = useState([]);

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Store } from "../context/store";
 
 function ProductListing(props) {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
     let categoryRoute = '/category/' + props.category_id;
     let subCategoryRoute = '/sub-category/' + props.subCategory_id;
     let productRoute = '/product/' + props.product_id;
@@ -19,7 +22,7 @@ function ProductListing(props) {
                     <p>{props.photo}</p>
                 </span>
                 <Link to={productRoute}>
-                    <img src={props.image} alt={props.imageAlt} />
+                    <img src={mainUrl + props.image} alt={props.imageAlt} />
                 </Link>
             </div>
 
@@ -29,7 +32,7 @@ function ProductListing(props) {
                         {props.productName}
                     </h4>
                 </Link>
-             
+
                 <p className="listing-p">
                     <Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
                     {props.date} at {props.hour}:{props.minute}
@@ -42,7 +45,7 @@ function ProductListing(props) {
                         {props.location}
                     </Link>
                 </p>
-               
+
             </div>
 
             <section>

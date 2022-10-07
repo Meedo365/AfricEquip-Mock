@@ -61,7 +61,7 @@ function NavBar() {
                 setUser(result)
                 localStorage.setItem("afriqId", result.user._id)
             })
-        history('/register')
+        history('/')
         setEmail("");
         setPassword("");
         handleClose();
@@ -122,7 +122,7 @@ function NavBar() {
 
 
                         <Nav.Link>
-                            <Link to="?list=1">
+                            <Link to="/create/listing">
                                 <button id="create-listing">
                                     <Icon icon="bytesize:compose" width="16" height="16" style={{ marginRight: '6px' }} />
                                     Create Listing

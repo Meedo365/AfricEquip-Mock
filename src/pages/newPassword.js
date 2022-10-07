@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import GoToTop from "../components/goToTop";
 import { Store } from "../context/store";
 import { useContext } from "react";
-import FlashMessage from 'react-flash-message'
+import FlashMessage from 'react-flash-message';
 
 function NewPassword() {
     let [password, setPassword] = useState("");

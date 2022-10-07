@@ -141,7 +141,7 @@ function Home() {
                     {post8.map((e, i) => {
                         let prices = "";
                         let shownaira = 'block';
-                        let numImages = e.images.length;
+                        let numImages;
                         let hour = new Date(e.createdAt).getHours();
                         let minute = new Date(e.createdAt).getMinutes();
                         let day = new Date(e.createdAt).getDate();
@@ -154,6 +154,11 @@ function Home() {
                             shownaira = "none"
                         } else {
                             prices = e.price
+                        }
+                        if (e.images[0] === "/uploads//325picture.jpg") {
+                            numImages = 0
+                        } else {
+                            numImages = e.images.length
                         }
 
                         return (

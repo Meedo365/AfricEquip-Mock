@@ -15,6 +15,7 @@ import LocationPage from './pages/location';
 import Activate from './pages/activate';
 import ForgotPassword from './pages/resetPassword';
 import NewPassword from './pages/newPassword';
+import CreatePosting from './pages/createPost';
 
 function App() {
   return (
@@ -32,10 +33,11 @@ function App() {
           <Route path="/location/:id" element={<LocationPage />} />
           <Route path="/user/activate/:id" element={<Activate />} />
           <Route path="/user/reset/:id" element={<NewPassword />} />
+          <Route path="/create/listing" element={<CreatePosting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
-    </StoreContext>
+    </StoreContext >
   );
 }
 
