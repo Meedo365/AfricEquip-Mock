@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Store } from "../context/store"
 
 function ProductListingList(props) {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
     let categoryRoute = '/category/' + props.category_id;
     let subCategoryRoute = '/sub-category/' + props.subCategory_id;
     let productRoute = '/product/' + props.product_id;
@@ -22,7 +25,7 @@ function ProductListingList(props) {
                             <p>{props.photo}</p>
                         </span>
                         <Link to={productRoute}>
-                            <img id="listing-img-tab" src={props.image} alt={props.imageAlt} />
+                            <img id="listing-img-tab" src={mainUrl + props.image} alt={props.imageAlt} />
                         </Link>
                     </div>
                 </Col>

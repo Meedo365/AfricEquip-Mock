@@ -26,7 +26,7 @@ function SearchComponent(props) {
                 prices = e.price
             }
 
-            if (e.images[0] === "https://africequip.com/storage/app/default/picture.jpg") {
+            if (e.images[0] === "/uploads//325picture.jpg") {
                 numImages = 0
             } else {
                 numImages = e.images.length

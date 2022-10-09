@@ -8,10 +8,11 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import FlashMessage from 'react-flash-message';
+import { useLocation } from "react-router-dom";
 
 
 function CreatePosting() {
-
+    const routePath = useLocation();
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
     let [itemName, setItemName] = useState("");
@@ -33,7 +34,6 @@ function CreatePosting() {
     let num;
     let num2;
     let user_id = localStorage.getItem('afriqId');
-    let [productRoute, setProductRoute] = useState("633f6512187e7469b5d5ca33");
 
     useEffect(() => {
         loadCategory();
@@ -68,7 +68,9 @@ function CreatePosting() {
             })
     };
 
-
+    const onTop = () => {
+        window.scrollTo(0, 0);
+    }
     let createPost = (e) => {
         if (user_id == undefined) return (setUploadErr('You have to login'));
         let url = mainUrl + "/product";
@@ -103,19 +105,20 @@ function CreatePosting() {
                 .then(res => res.json())
                 .then(result => {
                     setSuccess(result.msg)
-                    setItemName("")
-                    setPrice("")
-                    setBrand("")
-                    setTransmission("")
-                    setUploadErr("")
-                    setCondition("")
-                    setYear('')
-                    setModel("")
-                    setLocation("")
-                    setSubCategory("")
-                    setCategory("")
-                    setImages("")
                 })
+            setItemName("")
+            setPrice("")
+            setBrand("")
+            setTransmission("---")
+            setUploadErr("")
+            setCondition("")
+            setYear('')
+            setModel("")
+            setLocation("")
+            setSubCategory("")
+            setCategory("")
+            setImages("")
+            onTop()
 
         } else if (images !== null) {
             if (images.length > 4) return (setUploadErr('Maximum of 4 images per product listing'));
@@ -126,22 +129,21 @@ function CreatePosting() {
                 .then(res => res.json())
                 .then(result => {
                     setSuccess(result.msg)
-                    setItemName("")
-                    setPrice("")
-                    setBrand("")
-                    setTransmission("---")
-                    setUploadErr("")
-                    setCondition("---")
-                    setYear('')
-                    setModel("")
-                    setLocation("---")
-                    setSubCategory("---")
-                    setCategory("")
-                    setImages("")
                 })
+            setItemName("")
+            setPrice("")
+            setBrand("")
+            setTransmission("---")
+            setUploadErr("")
+            setCondition("---")
+            setYear('')
+            setModel("")
+            setLocation("---")
+            setSubCategory("---")
+            setCategory("")
+            setImages("")
+            onTop()
         }
-
-
     };
 
     return <>
@@ -195,7 +197,7 @@ function CreatePosting() {
                                         <label>Transmission</label>
                                     </Col>
                                     <Col md="7">
-                                        <select onChange={(e) => setTransmission(e.target.value)}>
+                                        <select onChange={(e) => setTransmission(e.target.value)} value={transmission}>
                                             <option value='---'>---</option>
                                             <option value='Automatic'>Automatic</option>
                                             <option value="Manual">Manual</option>
@@ -208,7 +210,7 @@ function CreatePosting() {
                                         <label>condition</label>
                                     </Col>
                                     <Col md="7">
-                                        <select onChange={(e) => setCondition(e.target.value)}>
+                                        <select onChange={(e) => setCondition(e.target.value)} value={condition}>
                                             <option value='---'>---</option>
                                             <option value='New'>New</option>
                                             <option value="Used">Used</option>
@@ -239,7 +241,7 @@ function CreatePosting() {
                                         <label>Location</label>
                                     </Col>
                                     <Col md="7">
-                                        <select name="location_id" onChange={(e) => setLocation(e.target.value)} style={{ textTransform: 'capitalize' }}>
+                                        <select name="location_id" onChange={(e) => setLocation(e.target.value)} style={{ textTransform: 'capitalize' }} value={location_id}>
                                             <option value="---" className="selectOption">---</option>
                                             {locations.map((e, i) => {
                                                 return (
@@ -255,7 +257,7 @@ function CreatePosting() {
                                         <label>category</label>
                                     </Col>
                                     <Col md="7">
-                                        <select name="category_id" onChange={(e) => setCategory(e.target.value)} style={{ textTransform: 'capitalize' }}>
+                                        <select name="category_id" onChange={(e) => setCategory(e.target.value)} style={{ textTransform: 'capitalize' }} value={category_id}>
                                             <option value="---" className="selectOption">---</option>
                                             {categorys.map((e, i) => {
                                                 return (
@@ -271,7 +273,7 @@ function CreatePosting() {
                                         <label>Sub-category</label>
                                     </Col>
                                     <Col md="7">
-                                        <select name="subCategory_id" onChange={(e) => setSubCategory(e.target.value)} style={{ textTransform: 'capitalize' }}>
+                                        <select name="subCategory_id" onChange={(e) => setSubCategory(e.target.value)} style={{ textTransform: 'capitalize' }} value={subCategory_id}>
                                             <option>---</option>
                                             {subCategorys.map((e, i) => {
                                                 if (category_id === e.category_id._id) {
