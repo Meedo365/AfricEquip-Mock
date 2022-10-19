@@ -118,6 +118,7 @@ function CreatePosting() {
             setSubCategory("")
             setCategory("")
             setImages("")
+            setSuccess("")
             onTop()
 
         } else if (images !== null) {
@@ -142,6 +143,7 @@ function CreatePosting() {
             setSubCategory("---")
             setCategory("")
             setImages("")
+            setSuccess("")
             onTop()
         }
     };
