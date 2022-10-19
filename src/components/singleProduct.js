@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
@@ -11,8 +11,11 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Store } from "../context/store";
 
 function ProductComponent(props) {
+    let store = useContext(Store);
+    let [mainUrl] = store.endUrl;
     let [block, setBlock] = useState("visible");
     const [images, setImages] = useState(props.images);
     const [mt, setMT] = useState("");
@@ -106,7 +109,7 @@ function ProductComponent(props) {
                                     {images.map((e, i) => {
                                         return (
                                             <div className="caro">
-                                                <img style={{ maxHeight: '650px' }} key={i} src={e} alt={i} />
+                                                <img style={{ maxHeight: '650px' }} key={i} src={mainUrl + e} alt={i} />
                                             </div>
                                         )
                                     })}

@@ -37,9 +37,9 @@ function ProductListing(props) {
                     <Icon icon="akar-icons:clock" color="#959595" width="15" height="15" style={{ marginRight: '5px' }} />
                     {props.date} at {props.hour}:{props.minute}
                     <Icon icon="bi:folder" color="#959595" width="15" height="15" style={{ marginLeft: '5px' }} />
-                    <Link className="ae" to={categoryRoute}>{props.category}</Link>
+                    <Link className="ae" to={categoryRoute}>{props.category + ' >'} </Link>
                     <Icon icon="uis:angle-double-right" color="#959595" width="20" height="20" />
-                    <Link className="ae" to={subCategoryRoute}>{props.subCategory}</Link>
+                    <Link className="ae" to={subCategoryRoute}>{props.subCategory + ' >'}</Link>
                     <Link className="ae" to={locationRoute}>
                         <Icon icon="carbon:location-filled" color="#959595" width="20" height="15" />
                         {props.location}
