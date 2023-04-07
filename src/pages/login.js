@@ -32,6 +32,7 @@ function LoginPage() {
         })
             .then(res => res.json())
             .then(result => {
+                console.log(result)
                 setUser(result)
                 localStorage.setItem("afriqId", result.user._id)
             })

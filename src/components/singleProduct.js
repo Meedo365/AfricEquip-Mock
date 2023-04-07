@@ -109,7 +109,7 @@ function ProductComponent(props) {
                                     {images.map((e, i) => {
                                         return (
                                             <div className="caro">
-                                                <img style={{ maxHeight: '650px' }} key={i} src={mainUrl + e} alt={i} />
+                                                <img style={{ maxHeight: '650px' }} key={i} src={e} alt={i} />
                                             </div>
                                         )
                                     })}
@@ -198,7 +198,8 @@ function ProductComponent(props) {
                     <Col className="product-owner" lg="3">
                         <div className="border" style={{ borderRadius: "10px" }}>
                             <div className="p-2 flex align-items-center">
-                                <img src={props.userImg} alt={props.username[0]} />
+                                {/* <img src={props.userImg} alt={props.username[0]} /> */}
+                                <Icon icon="mdi:user" width="100" height="100" />
                                 <span className="ms-3">
                                     <p>Posted By</p>
                                     {/* <Link to={'/category/' + props.catId}> */}

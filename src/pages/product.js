@@ -89,7 +89,7 @@ function ProductPage() {
                     dateUser={dateUser}
                     hourUser={hourUser}
                     minuteUser={minuteUser}
-                    userImg={e.user_id.image}
+                    // userImg={e.user_id.image}
                     username={e.user_id.name}
                 />
             )

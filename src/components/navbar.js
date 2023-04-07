@@ -32,7 +32,7 @@ function NavBar() {
 
     useEffect(() => {
         userCheck();
-    }, [routePath]);
+    }, [routePath, email]);
 
 
     let userCheck = () => {

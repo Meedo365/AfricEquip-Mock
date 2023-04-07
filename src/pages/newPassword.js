@@ -68,7 +68,6 @@ function NewPassword() {
                                         <Icon onClick={handleShowPassword} id="show-password" icon="quill:eye-closed" width="30" height="30" hFlip={true} />
                                     </span>
                                     <p className="mt-1" style={{ fontSize: '12px', color: 'gray' }}>At least 8 characters</p>
-                                    {/* <p style={{ color: 'red', fontSize: 'smaller', marginTop: '-18px' }}>{pwdError} <br /> {pwdError2} </p> */}
                                 </Col>
                             </Row>
                         </Form.Group>

@@ -723,17 +723,6 @@ input[type=number] {
   justify-content: center;
 }
 
-#backToLogin a:hover {
-  color: #ef8c17;
-  width: fit-content;
-}
-
-#backToLogin a {
-  width: fit-content;
-  text-decoration: none;
-  font-size: small;
-  font-weight: 600;
-}
 
 .toRegsiter {
   font-size: small;
@@ -1232,7 +1221,8 @@ button.control-arrow .control-next {
 }
 
 #compact-row {
-  height: 30px;
+  height: 100%;
+  margin-top: 10px;
 }
 
 #flash {

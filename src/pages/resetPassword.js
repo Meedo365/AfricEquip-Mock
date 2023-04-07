@@ -58,20 +58,7 @@ function ForgotPassword() {
                                 />
                             </span>
                         </Form.Group>
-
-                        {/* <Row>
-                            <div className="captcha">
-                                <h4>Captcha Here</h4>
-                            </div>
-
-                            <div className="captchaInput">
-                                <p>Please enter the security code shown in the image above in the field below:</p>
-                                <Form.Control style={{ width: '50%' }}
-                                    type="text"
-                                />
-                            </div>
-                        </Row> */}
-
+                    
                         <Button className="align-self-center" id='reset-btn' onClick={() => forgotPassword()}>
                             Submit
                         </Button>

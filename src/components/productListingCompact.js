@@ -30,7 +30,7 @@ function ProductListingCompact(props) {
                         <Col lg="5">
                             <div className="listing-info">
 
-                                <p className="listing-p flex" style={{ marginTop: '0px' }}>
+                                <p className="listing-p flex" >
                                     <div className="flex" style={{ justifyContent: 'center', alignItems: 'center', height: 'fit-content' }}>
                                         <Icon icon="akar-icons:clock" color="#959595" width="20" height="15" style={{ marginRight: '2px' }} />
                                         {props.date} at {props.hour}:{props.minute}
@@ -53,7 +53,7 @@ function ProductListingCompact(props) {
                 <Col md="3">
                     <Row>
                         <Col lg="9">
-                            <div style={{ marginTop: '0px' }}>
+                            <div>
                                 <h3 className="flex" style={{ fontSize: 'large', fontWeight: '700' }}>
                                     <p style={{ display: props.shownaira }}>&#8358;</p>{props.price}
                                 </h3>

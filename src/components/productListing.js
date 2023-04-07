@@ -22,7 +22,7 @@ function ProductListing(props) {
                     <p>{props.photo}</p>
                 </span>
                 <Link to={productRoute}>
-                    <img src={mainUrl + props.image} alt={props.imageAlt} />
+                    <img src={props.image} alt={props.imageAlt} />
                 </Link>
             </div>
 

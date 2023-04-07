@@ -76,10 +76,17 @@ function CreatePosting() {
         let url = mainUrl + "/product";
         num = price.replace(/,/gi, "");
         num2 = num.replace(/\d(?=(?:\d{3})+$)/g, '$&,');
+        let defaultImage = '/uploads/ / 325picture.jpg'
+        if (price == "" || price == " ") {
+            setPrice("Contact Us")
+        }
+        if (brand == "" || brand == " ") {
+            setPrice("Other")
+        }
         let data = {
             user_id, itemName, brand, price: num2, transmission,
             condition, year, model, location_id, category_id,
-            subCategory_id,
+            subCategory_id, images: defaultImage
         }
         const formData = new FormData();
         formData.append('user_id', user_id)

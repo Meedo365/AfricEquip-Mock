@@ -1,10 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { Store } from "../context/store";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 function SideBar() {
     let store = useContext(Store);
+    let id = useParams();
+    console.log(id.id)
     let [mainUrl] = store.endUrl;
     let [category, setCategory] = store.productCategory;
     let [location, setLocation] = store.allLocations;
@@ -52,8 +54,14 @@ function SideBar() {
                 <hr />
                 <span className="mb-3">
                     {location.map((e, i) => {
+                        let color;
+                        let weight;
+                        if (id.id === e._id) {
+                            color = "#4682b4";
+                            weight = 900;
+                        }
                         return (
-                            <Link key={i} to={"/location/" + e._id}>{e.place}</Link>
+                            <Link style={{ color: color, fontWeight: weight }} key={i} to={"/location/" + e._id}>{e.place}</Link>
                         )
                     })}
                     <p>View More ({location.length})</p>

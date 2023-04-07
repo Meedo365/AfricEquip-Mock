@@ -25,7 +25,7 @@ function ProductListingList(props) {
                             <p>{props.photo}</p>
                         </span>
                         <Link to={productRoute}>
-                            <img id="listing-img-tab" src={mainUrl + props.image} alt={props.imageAlt} />
+                            <img id="listing-img-tab" src={ props.image} alt={props.imageAlt} />
                         </Link>
                     </div>
                 </Col>
