@@ -3,7 +3,7 @@ export const Store = createContext();
 const StoreContext = ({ children }) => {
     let [user, setUser] = useState('');
     // let [url, setUrl] = useState('http://localhost:5001');
-    let [url, setUrl] = useState('https://afric-equip-endpoint.onrender.com/');
+    let [url, setUrl] = useState('https://afric-equip-endpoint.onrender.com');
     let [cookieAllow, setCookieAllow] = useState('block');
     let [post8, setPost8] = useState([]);
     let [post, setPost] = useState([]);
