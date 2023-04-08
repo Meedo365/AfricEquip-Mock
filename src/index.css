@@ -1291,6 +1291,16 @@ button.control-arrow .control-next {
   font-weight: 800;
 }
 
+.loading {
+  height: 25vh;
+  justify-content: center;
+  padding: 10% 0;
+}
+
+.loading h4 {
+  padding-left: 20px;
+}
+
 @media(max-width:425px) {
   #listing-img-tab {
     height: 200px;

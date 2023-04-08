@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import GoToTop from "../components/goToTop";
 import { Store } from "../context/store";
 import { Link } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 function Home() {
     let store = useContext(Store);
@@ -138,7 +139,10 @@ function Home() {
                 </div>
 
                 <Row className="g-0">
-                    {post8.map((e, i) => {
+                    {post8.length === 0 ? <div className="flex loading">
+                        <Spinner animation="border" variant="secondary" />
+                        <h4>LOADING...</h4>
+                    </div> : post8.map((e, i) => {
                         let prices = "";
                         let shownaira = 'block';
                         let numImages;

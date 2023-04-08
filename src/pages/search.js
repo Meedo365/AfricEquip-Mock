@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import GoToTop from "../components/goToTop";
 import { Store } from "../context/store";
 import { Link, useParams } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Icon } from '@iconify/react';
 import Container from 'react-bootstrap/Container';
@@ -202,7 +202,10 @@ function SearchPage() {
                     </div>
                     <Row className="gx-0" style={{ boxShadow: '0px 10px 15px 10px whitesmoke' }}>
 
-                        {post.map((e, i) => {
+                        {post.length === 0 ? <div className="flex loading">
+                            <Spinner animation="border" variant="secondary" />
+                            <h4>LOADING...</h4>
+                        </div> : post.map((e, i) => {
                             // if (id.id === e.location_id._id) {
                             return (
                                 <>

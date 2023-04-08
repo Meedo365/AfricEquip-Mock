@@ -215,7 +215,7 @@ function LocationPage() {
 
                     <Row className="gx-0" style={{ boxShadow: '0px 10px 15px 10px whitesmoke' }}>
 
-                        {post.length == 0 ?
+                        {post.length === 0 ?
                             <NoProduct /> :
                             post.map((e, i) => {
                                 if (id.id === e.location_id._id) {
