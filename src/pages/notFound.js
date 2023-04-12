@@ -5,12 +5,18 @@ import Container from 'react-bootstrap/Container';
 import Footer from "../components/footer";
 import { Link } from "react-router-dom";
 import GoToTop from "../components/goToTop";
+import Aos from "aos";
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 function NotFound() {
+    useEffect(() => {
+        Aos.init({ duration: 1000 })
+    }, []);
     return <>
         <NavBar />
 
-        <div className="banner" style={{ background: 'white' }}>
+        <div className="banner" style={{ background: 'white' }} >
             <Container style={{ marginTop: '-230px' }}>
                 <section>
                     <span id="what">
@@ -47,7 +53,7 @@ function NotFound() {
             </Container>
         </div>
 
-        <Container className="notFound" style={{ marginTop: '-250px', textAlign: 'center' }}>
+        <Container className="notFound" style={{ marginTop: '-250px', textAlign: 'center' }} data-aos="slide-left" data-aos-once="true" data-aos-easing="ease-in-sine">
             <h1 >404</h1>
             <span style={{ color: '#e74c3c' }}>
                 <Icon icon="jam:triangle-danger-f" color="#e74c3c" width="16" height="16" />

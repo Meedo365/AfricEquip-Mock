@@ -15,7 +15,7 @@ function ProductListing(props) {
     let locationRoute = '/location/' + props.location_id
 
     return <>
-        <div className="listing-card" style={{ display: props.noneGrid }}>
+        <div className="listing-card" style={{ display: props.noneGrid }} data-aos={props.anime} data-aos-once="true">
             <div style={{ background: 'white' }}>
                 <span className="flex">
                     <Icon icon="ant-design:camera-filled" color="#959595" width="20" height="20" />
@@ -60,6 +60,7 @@ function ProductListing(props) {
                     <Icon icon="bi:bookmark-fill" width="15" height="15" style={{ marginRight: '2px', marginTop: '2px' }} />
                     <p >Save</p>
                 </div>
+                <button className="addBtn" >ADD TO CART</button>
             </section>
         </div>
     </>

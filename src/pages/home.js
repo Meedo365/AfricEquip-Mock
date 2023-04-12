@@ -11,7 +11,8 @@ import GoToTop from "../components/goToTop";
 import { Store } from "../context/store";
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
-
+import Aos from "aos";
+import 'aos/dist/aos.css';
 function Home() {
     let store = useContext(Store);
     let [mainUrl] = store.endUrl;
@@ -21,6 +22,7 @@ function Home() {
 
 
     useEffect(() => {
+        Aos.init({ duration: 1000 })
         loadCategory();
         load8Products();
     }, []);
@@ -90,7 +92,6 @@ function Home() {
                 </div>
             </Container>
         </div>
-
         <Container>
             <div className="category">
                 <div>
@@ -139,13 +140,14 @@ function Home() {
                 </div>
 
                 <Row className="g-0">
-                    {post8.length === 0 ? <div className="flex loading">
+                    {post8.length === 0 ? <div className="flex loading" >
                         <Spinner animation="border" variant="secondary" />
                         <h4>LOADING...</h4>
                     </div> : post8.map((e, i) => {
                         let prices = "";
                         let shownaira = 'block';
                         let numImages;
+                        let animate;
                         let hour = new Date(e.createdAt).getHours();
                         let minute = new Date(e.createdAt).getMinutes();
                         let day = new Date(e.createdAt).getDate();
@@ -164,11 +166,19 @@ function Home() {
                         } else {
                             numImages = e.images.length
                         }
+                        if (i % 2 === 0) {
+                            animate = "slide-right"
+                        } else if (i % 3 === 1) {
+                            animate = "zoom-in"
+                        } else {
+                            animate = "fade-down-left"
+                        }
 
                         return (
                             <Col className="square border-bottom  border-end" lg="3" md="4" xs="6">
                                 <ProductListing
                                     key={i}
+                                    anime={animate}
                                     photo={numImages}
                                     image={e.images[0]}
                                     imageAlt={i}
@@ -209,7 +219,7 @@ function Home() {
             </div>
         </Container>
 
-        <div style={{ background: 'whitesmoke' }}>
+        <div style={{ background: 'whitesmoke' }} data-aos="flip-left" data-aos-once="false" data-aos-easing="ease-in-sine">
             <Footer />
         </div>
 
